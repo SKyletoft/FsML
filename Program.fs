@@ -3,15 +3,7 @@ open Tensorflow.NumPy
 open type Tensorflow.Binding
 open type Tensorflow.KerasApi
 
-[<EntryPoint>]
-let main _ =
-  tf.enable_eager_execution()
-
-  // Parameters
-  let training_steps = 1000
-  let learning_rate = 0.01f
-  let display_step = 100
-
+let ml training_steps learning_rate display_step = 
   // Sample data
   let train_X = np.array(3.3f, 4.4f, 5.5f, 6.71f, 6.93f, 4.168f, 9.779f, 6.182f, 7.59f, 2.167f,
                          7.042f, 10.791f, 5.313f, 7.997f, 5.654f, 9.27f, 3.1f)
@@ -44,4 +36,15 @@ let main _ =
       let pred = W * train_X + b
       let loss = tf.reduce_sum(tf.pow(pred-train_Y,2)) / (2 * n_samples)
       printfn $"step: {step}, loss: {loss.numpy()}, W: {W.numpy()}, b: {b.numpy()}"
+
+[<EntryPoint>]
+let main argv =
+  // Parameters
+  let training_steps = 1000
+  let learning_rate = 0.01f
+  let display_step = 100
+
+  // ml training_steps learning_rate display_step
+  123 |> printfn "123 = %i"
   0
+
